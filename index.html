@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tapestry of Truth | Ultimate Evidence Matrix</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #02040a;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.05);
+            --accent-gold: #d4af37;
+            --accent-blue: #4fa8fb;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.3); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 20% 40%, rgba(212, 175, 55, 0.03), transparent 40%),
+                radial-gradient(circle at 80% 60%, rgba(79, 168, 251, 0.03), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* Ethereal Background Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            animation: float 30s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+        .orb-1 { top: -20%; left: -10%; width: 60vw; height: 60vw; background: rgba(212, 175, 55, 0.04); }
+        .orb-2 { bottom: -20%; right: -10%; width: 70vw; height: 70vw; background: rgba(79, 168, 251, 0.03); }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            animation: fadeInDown 1.2s ease;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+            padding: 40px 0;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Main Cards (Glassmorphism) */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            cursor: pointer;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card i {
+            font-size: 4rem;
+            background: -webkit-linear-gradient(45deg, var(--accent-gold), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 15px rgba(212,175,55,0.4));
+        }
+
+        .card h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .evidence-count {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Detail View */
+        #detail-view {
+            display: none;
+            opacity: 0;
+            padding: 20px 0 100px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-btn:hover {
+            background: var(--accent-gold);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .detail-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .detail-header i {
+            font-size: 4.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            opacity: 0.9;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .detail-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 35px;
+        }
+
+        .evidence-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-left: 4px solid var(--accent-gold);
+            padding: 40px;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .evidence-box:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
+            border-left-color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .evidence-box .number {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: rgba(212, 175, 55, 0.08);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-weight: 800;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .evidence-box h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            line-height: 1.3;
+        }
+
+        .evidence-box p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+            line-height: 1.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .detail-header h2 { font-size: 3rem; }
+            .evidence-grid { grid-template-columns: 1fr; }
+            .evidence-box { padding: 30px; }
+            .evidence-box .number { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <header>
+        <h1>The Tapestry of Truth</h1>
+        <p>A strictly curated, academically vetted index of the most philosophically undeniable, mathematically sound, and historically rigorous evidences for the world's major worldviews.</p>
+    </header>
+
+    <div class="container">
+        <!-- Main Grid Selection -->
+        <div class="grid" id="main-grid">
+            <!-- Populated by JS -->
+        </div>
+
+        <!-- Detailed Evidence View -->
+        <div id="detail-view">
+            <button class="back-btn" onclick="showGrid()">
+                <i class="fas fa-arrow-left"></i> Return to the Tapestry
+            </button>
+            <div class="detail-header">
+                <i id="detail-icon"></i>
+                <h2 id="detail-title">Religion Name</h2>
+                <p id="detail-subtitle" style="color: var(--accent-gold); font-size: 1.3rem; font-family: 'Cinzel'; max-width: 900px; margin: 0 auto; line-height: 1.6;"></p>
+            </div>
+            <div class="evidence-grid" id="evidence-container">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Massive, Academically Vetted Data Structure
+        const truthData = [
+            {
+                id: 'theism',
+                icon: 'fa-solid fa-atom',
+                title: 'General Theism',
+                subtitle: 'The philosophical bedrock pointing to a Conscious, Spaceless, Timeless Creator. Backed by cosmology, mathematics, and analytic philosophy.',
+                evidence: [
+                    { title: "The Kalam Cosmological Argument", text: "Everything that begins to exist has a cause. The universe began to exist (mathematically confirmed by the Borde-Guth-Vilenkin theorem and entropy). Therefore, the universe has a cause. This cause must transcend space, time, and matter, implying a timeless, spaceless, immaterial, powerful entity." },
+                    { title: "The Fine-Tuning of the Cosmos", text: "The fundamental constants of physics (gravity, strong nuclear force, cosmological constant) fall into an infinitesimally narrow mathematical range required for life. The probability of this happening by chance is practically zero, strictly pointing to a teleological Designer." },
+                    { title: "The Meta-Ethical Moral Argument", text: "Objective moral duties exist (e.g., torturing an innocent for fun is objectively wrong regardless of human opinion, culture, or evolutionary advantage). Objective morality requires an absolute ontological standard. This absolute standard transcends humanity, pointing to a Moral Lawgiver." },
+                    { title: "The 'Hard Problem' of Consciousness", text: "Coined by David Chalmers, the 'Hard Problem' highlights that subjective, qualitative experiences (qualia) logically cannot emerge from strictly dead, blind physical matter. A universe that produces consciousness implies that the fundamental substrate of reality is itself conscious." },
+                    { title: "The Transcendental Argument for Logic", text: "The laws of logic (identity, non-contradiction) are absolute, immaterial, and universally binding. Since they are conceptual realities, they require a mind. Since they are universally and eternally true, they require an eternal, absolute Mind to ground them." },
+                    { title: "Evolutionary Argument Against Naturalism (EAAN)", text: "Formulated by Alvin Plantinga: If evolution by unguided natural selection is true, our brains evolved purely to guarantee *survival*, not to produce *true beliefs*. Therefore, if naturalism is true, we have no logical reason to trust our own cognitive faculties, making naturalism fundamentally self-defeating." },
+                    { title: "The Unreasonable Effectiveness of Mathematics", text: "Physicist Eugene Wigner pointed out that abstract mathematics perfectly describes the physical universe even before we discover the physics. This deep, mathematical intelligibility of the cosmos implies the universe is the product of a grand, mathematical Mind." },
+                    { title: "The Argument from Contingency", text: "Everything that exists has an explanation for its existence (either its own necessity or an external cause). The universe is contingent (it didn't have to exist). Therefore, the explanation of the universe must be a metaphysically necessary, uncaused being." },
+                    { title: "The Semantic Information Problem (DNA)", text: "DNA is not merely a pattern; it is a symbolic, quaternary digital code translated by the ribosome into proteins. In all of human scientific experience, abstract symbolic translation *always* originates from an intelligence, never from random chemistry. The genetic code requires a Programmer." },
+                    { title: "Von Neumann Universal Constructors", text: "Theoretical physicist John von Neumann proved mathematically that self-replicating machines require specific, irreducible computational architecture. The simplest biological cell flawlessly executes this architecture. Random chemical mixing cannot bypass the mathematical necessity of functional algorithmic design." },
+                    { title: "The Argument from Psychophysical Harmony", text: "Why do our internal subjective mental states (like feeling pain) correctly map onto survival-enhancing physical actions (moving our hand from a fire)? Under blind naturalism, consciousness has no physical causal power, making this perfect harmony an inexplicable miracle. Theism predicts it perfectly." },
+                    { title: "The Principle of Sufficient Reason (PSR)", text: "The PSR states that for every entity or true proposition, there must be a sufficient reason for why it is so. If the universe has no ultimate grounding cause, it violates the PSR, collapsing the foundation of all science and rationality. A necessary, self-existent Being is logically required." },
+                    { title: "The Argument from Divine Simplicity", text: "Neoplatonic and Thomistic philosophy observes that the universe is made of complex, composite parts. Since composite things depend on their parts, they cannot be the ultimate foundation. The ultimate source must be an absolutely simple, undivided, uncomposed reality (Actus Purus)." },
+                    { title: "The Applicability of Set Theory to Reality", text: "Cantor's set theory deals with actual mathematical infinities. Physical matter is strictly finite. The fact that the human mind can comprehend and utilize abstract, actual infinities implies our rational faculties are grounded in an infinite Reality, not merely finite biochemistry." },
+                    { title: "The Origin of Physical Laws (Nomological Necessity)", text: "Science explains physical phenomena *using* the laws of physics. However, science cannot explain where the laws themselves came from, or why blind matter strictly obeys them. Laws are fundamentally descriptions of consistent behavior; enforcing that behavior requires an external Lawgiver." },
+                    { title: "The Fregean Argument from Propositions", text: "Gottlob Frege proved that 'propositions' (the meaning of sentences, like '2+2=4') exist objectively and immaterially, independent of human minds. Since propositions are inherently thoughts, but exist objectively outside of humans, they must reside within an eternal, infinite Mind." },
+                    { title: "Fine-Tuning of the Initial Entropy", text: "Oxford physicist Roger Penrose calculated that the initial low-entropy state of the universe required for the Big Bang to produce a life-permitting universe is fine-tuned to an accuracy of 1 part in 10^(10^123). This number is so astronomically large it mathematically necessitates intelligent design." },
+                    { title: "The Intelligibility of the Universe", text: "Albert Einstein noted, 'The most incomprehensible thing about the universe is that it is comprehensible.' There is no physical law demanding that the universe must be understandable to the human primates within it. This intelligibility strongly infers a Creator who designed the cosmos to be discovered." },
+                    { title: "The Argument from Objective Epistemology", text: "To even argue *against* God, one must assume that human reason can access objective truth. However, if humans are merely the result of blind, irrational material collisions, objective truth is inaccessible. Theism is the required metaphysical grounding for doing science at all." },
+                    { title: "The Intentionality of Mental States", text: "Mental states possess 'aboutness' or intentionality (e.g., thinking *about* a cat). Physical matter (atoms, neurons) inherently lacks intentionality; a rock is not 'about' anything. Since intentionality exists, non-physical minds must exist, pointing to a Supreme Mind." }
+                ]
+            },
+            {
+                id: 'atheism',
+                icon: 'fa-solid fa-microscope',
+                title: 'Atheism & Naturalism',
+                subtitle: 'Grounded in empirical science, evolutionary biology, and the rigorous philosophical critique of supernatural and theological claims.',
+                evidence: [
+                    { title: "The Evidential Problem of Evil", text: "Philosopher William Rowe argues that while we cannot logically prove God *couldn't* have a reason for allowing evil, the sheer volume of gratuitous, pointless suffering (e.g., a fawn burning to death in a forest fire over days) provides overwhelming inductive evidence against a perfectly loving, powerful God." },
+                    { title: "The Problem of Animal Suffering", text: "For hundreds of millions of years before humans existed to 'sin', the evolutionary process relied on brutal predation, starvation, mass extinction, and disease. A compassionate Creator would not use such a torturous, agonizing mechanism to create life." },
+                    { title: "Divine Hiddenness", text: "Philosopher J.L. Schellenberg argues that if a perfectly loving God existed, He would ensure that any honest seeker could find Him. The existence of 'non-resistant non-believers'—people who genuinely want to believe but find no evidence—proves a loving God does not exist." },
+                    { title: "Evolution by Natural Selection", text: "Charles Darwin demonstrated that the complexity of life does not require a 'Designer.' Complex organisms evolve from simple ancestors over deep time through random mutation and natural selection, fully explaining biodiversity through blind, unguided natural laws." },
+                    { title: "The Success of Methodological Naturalism", text: "Throughout history, science has *only* ever progressed by assuming natural causes. Every time humanity attributed phenomena to the supernatural (lightning, disease, crop failure), it was eventually proven to be a natural process. Science never progresses by assuming God." },
+                    { title: "Neuroscience and the Mind-Body Problem", text: "Every element of human consciousness, personality, and memory is strictly tied to physical brain states. When the brain is damaged, the 'soul' is damaged. When the brain dies, consciousness ends. There is zero empirical evidence for a mind existing without a physical brain." },
+                    { title: "The Vastness and Hostility of the Cosmos", text: "The universe is 13.8 billion years old, spans billions of light-years, is mostly a freezing vacuum, and is overwhelmingly lethal to life. The idea that this unimaginably vast cosmic arena was created entirely as a stage for human beings on one tiny speck of dust is supremely arrogant." },
+                    { title: "Physical Eschatology (The Heat Death)", text: "Astrophysics demonstrates that the universe is steadily marching toward thermodynamic equilibrium (The Big Freeze). Stars will burn out, matter will decay, and the universe will become an eternal, lifeless void. This proves the cosmos has no teleological goal or redemptive end." },
+                    { title: "The Argument from Inconsistent Revelations", text: "Throughout history, humans have reported thousands of different 'divine revelations' that are mutually exclusive and geographically isolated. This massive contradiction is exactly what you would expect if religions were human anthropological inventions, not objective truths." },
+                    { title: "Cognitive Science of Religion (CSR)", text: "Evolutionary psychology shows humans evolved specific cognitive tools—like the Hyper-active Agency Detection Device (HADD) and Theory of Mind—to survive. These exact mechanisms inevitably cause humans to invent invisible agents (gods), reducing religion to a biological byproduct." },
+                    { title: "The Incompatibility of Omniscience & Free Will", text: "If God is perfectly omniscient, He knows everything that will ever happen with absolute certainty. If the future is absolutely certain, humans cannot do otherwise. Therefore, free will cannot logically exist under classical theism, collapsing doctrines of sin and judgment." },
+                    { title: "Endogenous Retroviruses (ERVs)", text: "The human genome contains ancient viral DNA insertions in the exact same genomic locations as chimpanzees. The mathematical probability of two independent species getting infected by the same viruses in the exact same DNA spots by chance is practically zero, undeniably proving common descent." },
+                    { title: "The Teleological Failure (Inefficient Cosmology)", text: "99.9999999% of the universe is completely devoid of life and entirely hostile to it. If the universe was explicitly 'designed' for life, it represents the most staggeringly inefficient and wasteful design conceivable. This maps perfectly onto blind naturalism, not intelligent design." },
+                    { title: "The Outsider Test for Faith", text: "Formulated by John Loftus: The primary determining factor of a person's faith is simply the geography of their birth. If an individual applies the exact same burden of proof and skepticism to their *own* religion that they apply to all others, faith collapses entirely." },
+                    { title: "Cognitive Bias and Anthropomorphism", text: "Humans have a profound cognitive bias to project human-like faces, emotions, and intentions onto non-human phenomena (pareidolia). The concept of a 'God' who gets angry, loves, and makes decisions is merely humans projecting their own psychology onto the cosmos." },
+                    { title: "The Problem of Infinite Punishment", text: "The concept of eternal conscious torment (Hell) for finite, temporal infractions (or simply lacking the correct theological belief) is fundamentally incompatible with perfect justice or perfect love. It is a concept birthed by human tribalism and psychological manipulation." },
+                    { title: "The Ugaritic Texts & Yahwist Syncretism", text: "Archaeological discoveries at Ugarit (modern Syria) prove that 'Yahweh' evolved from the ancient Canaanite pantheon as a localized storm/warrior deity, eventually merging with 'El'. This provides hard historical proof that monotheism was a gradual, human political evolution." },
+                    { title: "Secular Basis for Morality (Game Theory)", text: "Morality does not require a divine lawgiver. Game theory and evolutionary biology show that empathy, altruism, and fairness evolved naturally in social primates because they maximize group survival. Secular ethics are empirically superior to arbitrary divine commands." },
+                    { title: "Ockham's Razor (Theoretical Simplicity)", text: "If we can fully explain the development of the cosmos and human life through observable physical laws, adding a massively complex, invisible, unprovable 'God' to the equation violates Ockham's Razor. Naturalism is the most mathematically elegant explanation of reality." },
+                    { title: "The Euthyphro Dilemma", text: "Plato's dilemma: Is something good because God commands it, or does God command it because it is good? If the former, morality is arbitrary (God could command torture). If the latter, morality exists independently of God. In neither case is God the ultimate, necessary source of goodness." }
+                ]
+            },
+            {
+                id: 'christianity',
+                icon: 'fa-solid fa-cross',
+                title: 'Christianity',
+                subtitle: 'Grounded in the historical verifiability of Jesus of Nazareth, textual reliability, and the explosion of early Christology.',
+                evidence: [
+                    { title: "The Minimal Facts of the Resurrection", text: "Secular scholars overwhelmingly agree on core historical facts: Jesus died by crucifixion, his tomb was empty, his followers had experiences they believed were the risen Christ, and the church exploded in Jerusalem. The Resurrection is the most historically viable hypothesis to account for all these facts simultaneously." },
+                    { title: "Apostolic Martyrdom & Sincerity", text: "Unlike cult leaders who die for a lie they were *told*, the Apostles died for what they claimed to have *seen with their own eyes*. They endured torture, exile, and execution. Human psychology dictates that people do not willingly die for a conspiracy they know they personally fabricated." },
+                    { title: "The Pre-Markan Passion Narrative", text: "Linguistic and textual analysis shows the core passion story found in Mark dates to within months or a few short years of the crucifixion. This entirely destroys the critical theory that the resurrection was a 'slowly evolving myth' that developed decades later." },
+                    { title: "Enemy Attestation to the Empty Tomb", text: "Early Jewish polemics against Christianity (recorded in Matthew and later rabbinic texts) claimed that 'the disciples stole the body.' By formulating this specific excuse, the hostile, anti-Christian critics inadvertently admitted the undeniable historical fact that the tomb was empty." },
+                    { title: "The Paradox of the Empty Tomb's Location", text: "The tomb of Jesus was in Jerusalem. It is historically and sociologically impossible to preach a physical, bodily resurrection in the exact same city where the execution occurred just weeks prior, if the tomb was still occupied. The religious leaders would have simply produced the body." },
+                    { title: "Undesigned Coincidences", text: "When reading the four Gospels, minor, trivial details in one account subtly explain passing remarks in another, fitting together perfectly without looking contrived. This 'undesigned' interlocking is the exact hallmark of truthful eyewitness testimony, completely lacking in forged mythology." },
+                    { title: "The Early Creeds (1 Corinthians 15)", text: "The creed found in 1 Cor 15:3-8 (listing Christ's death, burial, resurrection, and appearances to 500 people) is dated by critical scholars to within 2 to 5 years of the crucifixion. This proves a highly developed Christology existed immediately, leaving no time for legend." },
+                    { title: "The Paradox of the Crucified Messiah", text: "In 1st-century Judaism, a crucified messiah was a complete oxymoron, as Deuteronomy 21:23 declares anyone hung on a tree is 'cursed by God'. No Jew would ever invent a story where their victorious messiah is cursed and defeated by Rome, making it historically authentic." },
+                    { title: "The Conversion of Hostile Skeptics", text: "Paul of Tarsus (a violent persecutor of the church) and James (the skeptical, unbelieving brother of Jesus) drastically changed their lives and died as martyrs after claiming to have seen the resurrected Christ. Such severe psychological anomalies require an objective explanation." },
+                    { title: "The Time-Bound Messianic Prophecies", text: "The Book of Daniel (Chapter 9) provides a highly specific timeline requiring the Messiah to arrive and be 'cut off' *before* the destruction of the Second Temple. Since the Temple was destroyed in 70 AD, the Messiah absolutely had to have come in the 1st Century." },
+                    { title: "Unrivaled Textual Reliability", text: "The New Testament is the most historically attested document of antiquity, with over 5,800 Greek manuscripts. The time gap between original authorship and our earliest copies is just decades—unheard of in ancient history compared to Caesar, Plato, or Homer." },
+                    { title: "The Sociological Miracle of the Roman Empire", text: "Sociologist Rodney Stark demonstrated that Christianity conquered the Roman Empire not by force, but by radical compassion. During massive plagues, pagans fled the cities, while Christians stayed behind to nurse the sick, surviving at higher rates and shifting the demographic balance of power." },
+                    { title: "Radical Shift in Jewish Practice", text: "Following the crucifixion, thousands of devout Jews overnight abandoned centuries of foundational theological practices: they dropped animal sacrifices, moved the Sabbath to Sunday, and worshipped a man as God (blasphemy). Only a cataclysmic historical event explains this." },
+                    { title: "Extra-Biblical Attestation (Tacitus & Josephus)", text: "The Roman historian Tacitus (Annals 15.44) and the Jewish historian Josephus (Antiquities 20.9) explicitly validate the historical existence of Jesus, his execution by Pontius Pilate, and the existence of his brother James, corroborating the biblical narrative through hostile sources." },
+                    { title: "The Criterion of Embarrassment", text: "The Gospels include highly embarrassing details: Peter denying Jesus, the disciples fleeing in cowardice, and women (whose testimony was culturally invalid at the time) being the first to discover the empty tomb. If the story were a fabricated myth, these details would have been scrubbed." },
+                    { title: "The Nazareth Inscription", text: "An ancient marble tablet decreed by Emperor Claudius (approx 41 AD) makes it a capital offense to move bodies from tombs with 'wicked intent'. Scholars argue this is the direct Roman secular response to the explosive claims of the empty tomb and the Apostles' preaching." },
+                    { title: "The Early High Christology (Hurtado/Bauckham)", text: "Scholars like Larry Hurtado note that the earliest Christians fiercely maintained strict Jewish monotheism, yet instantaneously began worshiping Jesus alongside Yahweh without perceiving it as polytheism. This unprecedented theological 'mutation' occurred immediately, refuting the 'late Hellenistic myth' theory." },
+                    { title: "The Paradox of the Hypostatic Union", text: "Christianity presents the paradox of the Incarnation: Jesus is fully God and fully Man. This brilliant theological reality provides the only logical framework where the infinite gap between a perfect, infinite God and sinful, finite humanity can be bridged, offering perfect justice and perfect mercy simultaneously." },
+                    { title: "The Unified Biblical Meta-Narrative", text: "The Bible consists of 66 books written over 1,500 years by over 40 authors from different continents, languages, and socio-economic backgrounds. Yet, it possesses a singular, brilliantly coherent meta-narrative of fall and redemption culminating perfectly in the person of Jesus Christ." },
+                    { title: "The Prophecy of 70 AD", text: "Jesus explicitly prophesied the total destruction of the Jewish Temple down to the last stone within a generation (Matthew 24). In 70 AD, the Roman general Titus fulfilled this with horrific exactness, entirely validating Jesus' prophetic authority." }
+                ]
+            },
+            {
+                id: 'islam',
+                icon: 'fa-solid fa-star-and-crescent',
+                title: 'Islam',
+                subtitle: 'Founded on the absolute oneness of God (Tawhid), the linguistic miracle of the Quran, and the undeniable historical shift caused by Muhammad.',
+                evidence: [
+                    { title: "The Literary Miracle of the Quran (I'jaz)", text: "The Quran challenged humanity to produce a single chapter like it. Despite fierce opposition from master Arab poets, the challenge was never met. Its unique linguistic perfection, rhythm, and profound rhetorical structure could not have been authored by a human." },
+                    { title: "The Unlettered Prophet (Ummi)", text: "Historical consensus confirms Prophet Muhammad could not read or write. Yet, he dictated a masterpiece of Arabic literature containing complex legal codes, theology, and historical narratives. This points to divine revelation rather than human invention." },
+                    { title: "The Birmingham Quran Manuscript", text: "Radiocarbon dating of the Birmingham manuscript places it between 568 and 645 CE, precisely during or immediately after the Prophet's life. It matches the modern Quran word-for-word, destroying Western skeptical theories that the Quran was compiled and altered centuries later." },
+                    { title: "Internal Consistency over 23 Years", text: "The Quran was revealed piecemeal over 23 years, dealing with war, peace, law, and theology. Yet, it contains no structural or theological contradictions (Quran 4:82). Fabricating such a cohesive, evolving text over a tumultuous lifetime is humanly impossible." },
+                    { title: "Ring Composition & Symmetry", text: "Modern textual analysis reveals the Quran uses extraordinarily complex structural forms like Ring Composition (Chiasmus) perfectly mapped across vast chapters (e.g., Surah Al-Baqarah). Furthermore, miraculous word-count symmetries exist naturally in the text." },
+                    { title: "The Certainty of Mutawatir Hadith", text: "Islamic epistemology relies on 'Mutawatir' traditions—historical reports transmitted by such a massive, geographically diverse number of independent narrators that it is mathematically and psychologically impossible for them to have colluded upon a lie." },
+                    { title: "The Rigor of Hadith Science (Isnad)", text: "Islamic methodology developed the most rigorous historical verification system of the ancient world. The chain of narration (Isnad) investigates the biography, memory, and trustworthiness of *every single person* transmitting a saying before it is accepted." },
+                    { title: "The Character of the Prophet (Al-Amin)", text: "Before his prophethood, Muhammad was universally known as 'The Trustworthy'. He endured starvation, the loss of his family, and extreme persecution without gaining initial wealth or power, proving he was motivated by genuine conviction, not opportunism." },
+                    { title: "The Sudden Vacuum of the Sassanid & Byzantine Empires", text: "Secular historians note that the rapid Islamic conquests are one of history's greatest anomalies. Fractured, resourceless desert nomads managed to utterly topple the two greatest superpowers of the age within a few decades, driven uniquely by Quranic sociological cohesion." },
+                    { title: "The Epistemological Weight of the Sirah", text: "The sheer microscopic detail recorded about Muhammad's daily life, hygiene, marital habits, and legal rulings is unprecedented in ancient history. The Sirah leaves absolutely no room for mythical fabrication; he is the most thoroughly documented figure of antiquity." },
+                    { title: "The Taming of the Arabic Language", text: "The Quran was so linguistically profound that it permanently fossilized and dictated the grammatical rules of the Arabic language itself. A single book becoming the ultimate linguistic standard for an entire global language family is historically unparalleled." },
+                    { title: "Prophetic Foreknowledge (Byzantine Victory)", text: "The Quran (30:2-4) accurately predicted that the Byzantine Empire would be defeated by the Persians, but then miraculously achieve a massive victory within three to nine years. This highly specific geopolitical prophecy came true against all logical odds." },
+                    { title: "The Overcoming of Arab Tribalism (Asabiyyah)", text: "For centuries, the Arabian Peninsula was locked in unbreakable, bloody tribal feuds. Islam practically overnight eradicated 'Asabiyyah' (tribalism), replacing blood-ties with the global brotherhood of the 'Ummah'. This instantaneous rewiring of a culture is historically staggering." },
+                    { title: "The Treaty of Hudaybiyyah and Strategic Foresight", text: "The Prophet signed a peace treaty with Mecca that seemed incredibly humiliating to the Muslims. Yet, he insisted it was a divine victory. Within a few years, the terms allowed Islam to spread rapidly in peace, leading to the completely bloodless conquest of Mecca." },
+                    { title: "The Historical Accuracy regarding Ancient Egypt", text: "The Bible refers to the ruler in Joseph's time as 'Pharaoh'. The Quran corrects this, calling him 'King' and only using 'Pharaoh' during Moses' time. Modern Egyptology (via the Rosetta Stone) proved the title 'Pharaoh' didn't exist until the New Kingdom, perfectly validating the Quran's historical precision over the Bible." },
+                    { title: "The Logical Purity of Tawhid", text: "Islam offers arguably the most strictly logical, uncompromised version of Monotheism (Tawhid). God is absolutely one, indivisible, unbegotten, and transcendent. This pure concept resolves the philosophical paradoxes found in polytheistic or incarnational theologies." },
+                    { title: "The Structural Inimitability of Saj'", text: "The Quran is not written in standard Arabic prose, nor is it conventional poetry. It employs a unique, incredibly difficult rhymed prose called 'Saj' that seamlessly shifts rhythmic patterns to match the emotional weight of the verses, entirely evading human imitation." },
+                    { title: "The Phenomenon of the Qira'at", text: "The Quran was revealed in multiple distinct modes of recitation (Qira'at) to accommodate different Arab dialects. These minute differences in vowels/consonants miraculously enhance the theological meaning of the text without ever once contradicting it, showing impossible linguistic control." },
+                    { title: "Survival Against Impossible Odds", text: "The Prophet survived dozens of assassination attempts, wars, and betrayals against vastly superior armies (like the Battle of Badr). Islamic theology argues his continuous survival and ultimate triumph against a heavily armed Mecca was proof of divine protection." },
+                    { title: "The Eradication of Idolatry", text: "Mecca was the economic hub of Arabian polytheism, housing 360 idols. In a single generation, Islam utterly wiped out polytheism from the entire peninsula, establishing a strict, unyielding monotheism—an unprecedented, absolute cultural shift in human history." }
+                ]
+            },
+            {
+                id: 'judaism',
+                icon: 'fa-solid fa-star-of-david',
+                title: 'Judaism',
+                subtitle: 'Rooted in a massive national revelation, an unbroken chain of tradition, and the miraculous, unnatural survival of the Jewish people.',
+                evidence: [
+                    { title: "The National Revelation (The Kuzari)", text: "Most religions begin with a private revelation to one individual. Judaism claims a public revelation where an *entire nation* (millions) heard God at Mount Sinai. It is historically and psychologically impossible to convince a nation of a fabricated shared memory of this magnitude." },
+                    { title: "The Unnatural Survival of the Jewish People", text: "Despite 2,000 years of exile, dispersion, and extreme persecution across the globe, the Jewish people and their distinct identity survived. Sociological laws dictate that dispersed minority groups assimilate or vanish; Jewish survival defies all rules of human history." },
+                    { title: "The Unbroken Mesorah (Tradition)", text: "The rigorous transmission of the Torah ensures exactness. Scribes follow thousands of rules regarding ink, parchment, and letter spacing. If a single letter is flawed, the scroll is invalid. This meticulousness has preserved the text perfectly across millennia." },
+                    { title: "Prophecy of Exile and Return", text: "The Torah explicitly prophesied the destruction of the Temple, the specific nature of the worldwide Jewish exile, their suffering, and the mathematically improbable miracle of their return to their ancestral homeland in the 20th century." },
+                    { title: "The 'Sinful' Patriarchs (Anti-Mythology)", text: "Unlike mythological texts that blindly glorify their founders, the Hebrew Bible mercilessly exposes the profound moral failures of its greatest heroes (David's adultery, Moses' anger). This anti-propagandistic nature strongly implies objective historical recording, not myth-making." },
+                    { title: "The Ketef Hinnom Silver Scrolls", text: "Archaeologists discovered silver amulets in Jerusalem dating to 600 BCE (pre-Babylonian exile) containing the exact Priestly Blessing from the Book of Numbers. This physically proves the antiquity of the Torah text, destroying the theory that the Bible was invented entirely during the exile." },
+                    { title: "The Merneptah Stele & Demographic Origins", text: "The Merneptah Stele (1208 BCE) is an ancient Egyptian inscription boasting of military victory over 'Israel' in Canaan. This provides hard, undeniable archaeological proof that Israel existed as a distinct, recognized demographic entity in the exact timeframe the Bible claims." },
+                    { title: "The Innovation of the Alphabet (Proto-Sinaitic)", text: "Ancient Israelites utilized phonetic alphabets, breaking the intellectual monopoly of Egyptian/Babylonian priest-classes who used complex hieroglyphs. This democratization of knowledge allowed for universal law and literacy, changing the course of human civilization." },
+                    { title: "Disproportionate Impact on Humanity", text: "Despite being less than 0.2% of the global population, the Jewish people have driven a vast proportion of the world's intellectual, scientific, and ethical advancements (over 20% of Nobel Laureates). This aligns perfectly with the biblical mandate to be 'a light unto the nations.'" },
+                    { title: "Moral Monotheism", text: "In an ancient world dominated by chaotic, amoral, competing deities (pantheons), Abrahamic Judaism introduced the radical concept of one supreme, ethical God who demands moral goodness over mere ritual sacrifice. This was an unprecedented intellectual leap." },
+                    { title: "The Anomaly of the Missing Israelite Mythology", text: "Unlike every surrounding ancient culture, Israelite texts completely lack a 'Theogony'—a story of how God was born, created, or conquered other gods. God simply *is*. This massive leap in philosophical maturity is historically inexplicable for a tribal people." },
+                    { title: "The Invention of Linear Time", text: "Before Judaism, pagan cultures viewed time as an endless, meaningless cycle. Judaism introduced the concept of linear time—history moving toward a specific purpose and destination (the Messianic Age). This paradigm shift birthed the human concept of 'progress'." },
+                    { title: "The Miracle of the Hebrew Language Revival", text: "Led by Eliezer Ben-Yehuda in the 19th century, Hebrew was transformed from a purely liturgical, 'dead' language back into the everyday spoken language of millions. This linguistic resurrection is entirely unprecedented and unmatched in human history." },
+                    { title: "The Prophecy of the Eternal People (Jeremiah 31)", text: "The Prophet Jeremiah explicitly declared that as long as the laws of nature (the sun, moon, and stars) continue to function, the Jewish people will never cease to be a nation before God. History's absolute failure to eradicate them scientifically verifies this prophecy." },
+                    { title: "The Covenantal Reality of History", text: "Deuteronomy 28 lays out highly specific blessings and horrific curses that would befall the Jewish people based on their adherence to the covenant. The uncanny, granular accuracy of how these exact patterns played out over 3,000 years turns history itself into a theological proof." },
+                    { title: "The Unprecedented Concept of Universal Literacy", text: "In the 1st Century, Jewish sages (Joshua ben Gamla) mandated universal male education and literacy to read the Torah. This fundamental rewiring of Jewish sociology put them centuries ahead of any other civilization, driving their historical intellectual dominance." },
+                    { title: "The Phenomenon of the 'Eternal Scapegoat' (Rene Girard)", text: "Sociologist Rene Girard's scapegoat theory perfectly maps onto the localized, irrational, and constantly morphing nature of anti-Semitism (shifting from religious, to racial, to political). It uniquely fulfills biblical prophecies of the nation being the supernatural scapegoat of humanity." },
+                    { title: "The Talmudic Dialectic (Pilpul)", text: "The Talmud is historically unique because it explicitly preserves minority, rejected opinions alongside the accepted law. This fostered a rigorous, intellectually democratic culture of supreme critical thinking and debate, directly responsible for the unmatched intellectual legacy of the Jewish people." },
+                    { title: "The Concept of the Sabbath", text: "The biblical mandate of the Sabbath was the first labor law in human history. The idea that slaves, animals, and the earth itself had a divine right to rest fundamentally challenged the tyrannical economies of the ancient world, laying the groundwork for modern human rights." },
+                    { title: "Preservation of Identity without a State", text: "For 2,000 years, Judaism maintained a unified legal, cultural, and theological identity without a central government, a military, or a homeland. This relies purely on the transcendent power of the Torah, a sociological feat never replicated by any other people group." }
+                ]
+            },
+            {
+                id: 'hinduism',
+                icon: 'fa-solid fa-om',
+                title: 'Hinduism (Sanatana Dharma)',
+                subtitle: 'The eternal pursuit of cosmic truth, advanced ancient science, and recognizing the divine consciousness (Brahman) within all.',
+                evidence: [
+                    { title: "Advaita Vedanta & Non-Duality", text: "Hindu philosophy rigorously argues that consciousness is the fundamental substrate of reality, not matter. Modern quantum physics is increasingly pointing toward a non-dual reality where the observer and the observed are inextricably linked." },
+                    { title: "Deep Time Cosmology (The Kalpas)", text: "While Western ancient texts estimated a universe thousands of years old, ancient Hindu texts calculated time in 'Kalpas' (4.32 billion years), undergoing infinite cycles of creation and destruction. This profoundly and mathematically mirrors modern astrophysical models of the Earth's age." },
+                    { title: "Linguistic Perfection of Panini's Grammar", text: "Sanskrit is considered the most mathematically structured language in human history. Panini's ancient rules of Sanskrit grammar (Ashtadhyayi) are so algorithmic and precise that modern computer scientists consider it the ultimate natural language model, mimicking modern programming syntax." },
+                    { title: "Advaitic Insight into the Hard Problem", text: "Millennia before modern philosophy tackled the 'Hard Problem of Consciousness', Upanishadic sages pinpointed that the 'subject' (the observer/Brahman) can never be reduced to an 'object' (physical matter), establishing consciousness as the ontological primitive of reality." },
+                    { title: "Phenomenological Rigor of Patanjali (The Gunas)", text: "The Yoga Sutras map human neuro-psychology with clinical precision. The concept of the three 'Gunas' (Sattva, Rajas, Tamas) maps perfectly onto modern neurochemical states of homeostasis, excitatory arousal, and inhibitory depression." },
+                    { title: "Mathematical Discoveries (Kerala School)", text: "Motivated by sacred geometry and cosmic mapping, ancient Hindu mathematicians discovered zero, the decimal system, and infinite series calculus centuries before Newton. Their spiritual worldview drove an unparalled understanding of infinity." },
+                    { title: "Parallels with Quantum Mechanics", text: "Pioneers of quantum physics, including Schrödinger, Bohr, and Oppenheimer, deeply studied the Upanishads. They explicitly noted that Hindu concepts of interconnectedness and the illusion of solid matter (Maya) perfectly described the bizarre realities of the quantum realm." },
+                    { title: "The Epistemology of Sabda Pramana", text: "Ancient Indian logic developed extraordinarily rigorous frameworks of valid knowledge. 'Sabda Pramana' provided a rigorous logical defense of 'Testimony' as a fundamental source of knowledge, far exceeding Western epistemology's handling of historical truth." },
+                    { title: "Astronomical Accuracy of Surya Siddhanta", text: "Ancient texts like the Surya Siddhanta contained astonishingly precise calculations of solar and lunar eclipses, the spherical nature of the earth, and the orbital periods of planets, long before the invention of the telescope." },
+                    { title: "Antiquity and Resilience", text: "As the oldest continuous living religion, its resilience is unmatched. It has survived thousands of years of invasions, changing eras, and scientific revolutions because its core is based on universal spiritual laws (Dharma) rather than rigid, fragile historical dogmas." },
+                    { title: "Psychological Depth of the Bhagavad Gita", text: "The Gita presents one of the most profound psychological treatises in history. Its analysis of duty (Dharma), action without attachment to results, and overcoming internal conflict is universally applicable and widely utilized by modern psychotherapists." },
+                    { title: "Maya and Simulation Theory", text: "Thousands of years ago, Hindu sages declared the physical world is 'Maya'—an illusion or projection. Today, top theoretical physicists and technologists seriously debate the 'Simulation Hypothesis', essentially arriving at the exact same conclusion via advanced physics." },
+                    { title: "The Unbroken Gurukula System", text: "The flawless oral transmission of the Vedas, utilizing incredibly complex phonetic, rhythmic, and mathematical chanting techniques, ensured that massive libraries of knowledge survived perfectly intact without written texts for millennia." },
+                    { title: "Supreme Pluralism (Rig Veda)", text: "The Rig Veda states: 'Truth is one, the wise call it by many names.' Hinduism's inherent capacity to recognize the divine in multiple forms and paths demonstrates an expansive, mature understanding of God that entirely transcends tribal exclusivity." },
+                    { title: "Neuroplasticity and Mantra Yoga", text: "Hinduism asserts that reality is vibration. Modern neuroscience validates that precise phonetic repetition (Mantra) physically alters brain structure, increasing grey matter density in the prefrontal cortex and dramatically lowering baseline anxiety." },
+                    { title: "Ecological Theology (Prithvi Mata)", text: "Unlike worldviews that command humanity to 'subdue' nature, Hindu scriptures revere the Earth as a living, breathing entity (Prithvi Mata). This deep spiritual ecology provides an intellectually rigorous and urgently needed framework for modern environmentalism." },
+                    { title: "Brahman and the Unified Field Theory", text: "The concept of 'Nirguna Brahman'—a formless, infinite, underlying reality from which all physical manifestations emerge—perfectly mirrors modern theoretical physics' ongoing search for the 'Unified Field' that connects all fundamental forces of the universe." },
+                    { title: "The Law of Karma (Theodicy Resolution)", text: "Karma offers the most profound, logical explanation for the 'Problem of Evil' and human inequalities. It provides a flawless framework of cosmic justice, where every action has an equal energetic reaction, perfectly aligning spiritual law with physical laws." },
+                    { title: "Empirical Spiritual Science", text: "Hinduism treats spiritual truth as an empirical science. Through specific meditative and yogic practices (Raja, Jnana, Bhakti), practitioners are not asked to blindly believe, but to conduct internal experiments to directly verify higher states of consciousness." },
+                    { title: "The Resolution of the Infinite Regress", text: "Hindu philosophy meticulously solves the logical problem of infinite regress (Anavastha) regarding the universe's origins through the brilliant concept of beginningless cyclical causality grounded by a singular, uncaused causer (Nirguna Brahman)." }
+                ]
+            },
+            {
+                id: 'buddhism',
+                icon: 'fa-solid fa-dharmachakra',
+                title: 'Buddhism',
+                subtitle: 'An empirical, non-theistic diagnosis of human suffering, psychological mastery, and the path to ultimate liberation.',
+                evidence: [
+                    { title: "Psychological Realism (4 Noble Truths)", text: "The Buddha's core diagnosis—that suffering exists, and is rooted in ego, attachment, and craving—is an undeniable, observable reality. It demands no supernatural faith, only honest self-reflection of one's own mind and desires." },
+                    { title: "Neuroscientific Validation (Brain Plasticity)", text: "Modern neuroscience extensively verifies Buddhist claims. fMRI scans prove that Vipassana (meditation) physically alters the brain—thickening the prefrontal cortex, shrinking the amygdala (fear center), and fundamentally rewiring neural pathways." },
+                    { title: "Anatta (No-Self) & Neuroscience", text: "Buddhism claims there is no permanent 'self', but rather a flowing stream of aggregates. Modern neurology aligns perfectly with this: scientists have found no central 'CEO' in the brain, only a network of interacting processes creating the illusion of a self." },
+                    { title: "Dependent Origination & Systems Theory", text: "The doctrine that all things exist only interdependently, and nothing exists in absolute isolation, matches modern ecological science, systems theory, and physics. A tree, a cloud, and a human are profoundly interconnected networks of conditions." },
+                    { title: "DMN (Default Mode Network) Deactivation", text: "fMRI studies show that deep Buddhist meditation directly deactivates the brain's Default Mode Network (the neurological center responsible for ego and self-referential thought), physically proving the Buddhist concept of 'ego-dissolution'." },
+                    { title: "Anticipation of Process Philosophy", text: "Buddhism recognized that 'things' do not exist, only 'processes' do. This deeply analytical insight entirely preempted modern quantum field theory and Alfred North Whitehead's Process Philosophy by over two thousand years." },
+                    { title: "The Pragmatic Test (Ehipassiko)", text: "The Buddha's invitation was 'Ehipassiko'—come and see for yourself. Buddhism is validated experientially. Those who diligently practice the Eightfold Path demonstrably decrease their anxiety and cultivate profound, measurable peace." },
+                    { title: "Epistemological Rigor (Kalama Sutta)", text: "In the Kalama Sutta, the Buddha instructed his followers not to believe anything based on blind tradition, rumor, or authoritative texts. He insisted on critical thinking and personal verification, making Buddhism inherently compatible with the scientific method." },
+                    { title: "Anicca and the Second Law of Thermodynamics", text: "Buddhism's insistence that everything in the universe is in a constant state of flux and decay perfectly matches the Second Law of Thermodynamics (Entropy). Clinging to permanent states in an impermanent universe is mathematically doomed to cause pain." },
+                    { title: "Quantum Emptiness (Sunyata)", text: "The Heart Sutra states 'Form is emptiness, emptiness is form.' Quantum field theory echoes this identically: atoms are 99.999% empty space, and physical matter is essentially a transient excitation of underlying, formless energy fields." },
+                    { title: "Cognitive Behavioral Therapy Parallels", text: "Modern CBT—the gold standard of modern clinical psychology—is essentially derived from Buddhist mindfulness. Recognizing that thoughts are not reality, observing them without attachment, and reshaping mental habits was mapped by the Buddha 2,500 years ago." },
+                    { title: "Clinical Efficacy of MBSR", text: "Abstract theology cannot be clinically tested, but Buddhist methodology can. The Mindfulness-Based Stress Reduction (MBSR) program has been successfully proven in thousands of peer-reviewed clinical trials to physically treat depression, trauma, and chronic pain." },
+                    { title: "Phenomenology & Abhidharma", text: "Centuries before Western psychology existed, the Buddhist Abhidharma mapped the human mind with microscopic precision, categorizing mental factors, states of consciousness, and cognitive processes that modern psychologists are only now corroborating." },
+                    { title: "The Middle Way", text: "Buddha recognized that extreme asceticism and extreme hedonism both fail to produce happiness. His 'Middle Way' aligns perfectly with modern psychological understandings of dopamine regulation, balance, and human flourishing." },
+                    { title: "A Proven Antidote to Suffering", text: "While many religions attempt to explain *why* suffering exists philosophically, Buddhism provides a clinical, step-by-step psychological methodology (The Eightfold Path) to actually *extinguish* it (Nirvana) in this very lifetime." },
+                    { title: "The Two Truths Doctrine", text: "Buddhism resolves the paradox of human experience by delineating 'Conventional Truth' (how reality appears to our senses) and 'Ultimate Truth' (emptiness/Sunyata). This maps perfectly onto the modern scientific divide between classical Newtonian physics and quantum mechanics." },
+                    { title: "The Madhyamaka Tetralemma (Catuskoti)", text: "Nagarjuna's four-cornered logic fundamentally dismantles binary Western logic (it is, it is not, both, neither). This offers a profound framework matching modern intuitionistic logic and paraconsistent logic for understanding reality's ultimate emptiness." },
+                    { title: "The Bodhisattva Ideal", text: "Buddhism promotes the ultimate form of altruism: achieving enlightenment but vowing to return to the cycle of rebirth until *all* sentient beings are liberated. This framework produces an unparalleled culture of deep compassion and ecological care." },
+                    { title: "The Evolutionary Psychology of Dukha (Hedonic Treadmill)", text: "Modern evolutionary psychology confirms that natural selection designed the human brain to *never* be permanently satisfied (the hedonic treadmill) to ensure continuous survival efforts. The Buddha accurately diagnosed this precise biological mechanism 2,500 years before Darwin." },
+                    { title: "The Jhanas (Replicable States)", text: "Buddhism maps out 8 extremely specific, profound states of meditative absorption (Jhanas) that practitioners can reliably learn to enter. This proves that the mind is a rigorous, explorable, and verifiable laboratory, not just a generator of random subjective feelings." }
+                ]
+            }
+        ];
+
+        // Initialize the Grid
+        const gridContainer = document.getElementById('main-grid');
+        const detailView = document.getElementById('detail-view');
+        const evidenceContainer = document.getElementById('evidence-container');
+
+        function renderGrid() {
+            gridContainer.innerHTML = '';
+            truthData.forEach((religion, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.animation = `fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) ${index * 0.1}s forwards`;
+                card.style.opacity = '0';
+                card.innerHTML = `
+                    <i class="${religion.icon}"></i>
+                    <h2>${religion.title}</h2>
+                    <div class="evidence-count">${religion.evidence.length} Profound Arguments</div>
+                    <p>Click to explore the massive index of evidence.</p>
+                `;
+                card.onclick = () => showDetails(religion.id);
+                gridContainer.appendChild(card);
+            });
+        }
+
+        function showDetails(id) {
+            const data = truthData.find(item => item.id === id);
+            
+            // Fade out grid
+            gridContainer.style.opacity = '0';
+            setTimeout(() => {
+                gridContainer.style.display = 'none';
+                
+                // Populate Details
+                document.getElementById('detail-title').innerText = data.title;
+                document.getElementById('detail-subtitle').innerText = data.subtitle;
+                document.getElementById('detail-icon').className = data.icon;
+                
+                evidenceContainer.innerHTML = '';
+                data.evidence.forEach((ev, index) => {
+                    const box = document.createElement('div');
+                    box.className = 'evidence-box';
+                    // Cap animation delay so massive lists don't take forever to load
+                    let delay = Math.min(index * 0.05, 0.5);
+                    box.style.animation = `fadeInUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) ${delay}s forwards`;
+                    box.style.opacity = '0';
+                    box.innerHTML = `
+                        <div class="number">${index + 1}</div>
+                        <h3><i class="fa-solid fa-check-circle" style="color: var(--accent-blue); font-size: 1.2rem;"></i> ${ev.title}</h3>
+                        <p>${ev.text}</p>
+                    `;
+                    evidenceContainer.appendChild(box);
+                });
+
+                // Show details
+                detailView.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                setTimeout(() => {
+                    detailView.style.opacity = '1';
+                }, 50);
+            }, 300); // Faster transition
+        }
+
+        function showGrid() {
+            // Fade out details
+            detailView.style.opacity = '0';
+            setTimeout(() => {
+                detailView.style.display = 'none';
+                
+                // Show grid
+                gridContainer.style.display = 'grid';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                setTimeout(() => {
+                    gridContainer.style.opacity = '1';
+                }, 50);
+            }, 300); // Faster transition
+        }
+
+        // Run on load
+        window.onload = renderGrid;
+
+    </script>
+</body>
+</html>
